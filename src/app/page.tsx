@@ -1,101 +1,130 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import home_emoji from "../../public/img/home_emoji.png";
+import ProjectsSection from "../components/projectsSection";
+import ContactForm from "../components/contactForm";
+import { useLanguage } from "../contexts/LanguageContext";
+
+import GithubIcon from "../../public/img/github.svg";
+import LinkedinIcon from "../../public/img/linkedin.svg";
+import CVIcon from "../../public/img/cv.svg";
+import MailIcon from "../../public/img/mail.svg";
+import ArrowIcon from "../../public/img/arrow.svg";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const { content } = useLanguage();
+  const [isScrolled, setIsScrolled] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-[#e9ecef] dark:bg-[#212529] text-black dark:text-white">
+      <section
+        id="home"
+        className="max-w-7xl mx-auto px-4 py-16 flex items-center pt-96 mb-60 relative"
+      >
+        <div className="flex-shrink-0">
+          <Image src={home_emoji} alt="emoji" className="w-7/12" />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <div>
+          <h1 className="text-4xl font-bold mb-4">{content.welcome}</h1>
+          <p className="text-xl mb-6">{content.introduction}</p>
+          <div className="flex space-x-6 mt-4">
+            {[
+              {
+                href: "https://github.com/Alekxays",
+                label: "Github",
+                icon: (
+                  <GithubIcon className="w-6 h-6 text-black dark:text-white" />
+                ),
+              },
+              {
+                href: "https://www.linkedin.com/in/alexandre-boissel10/",
+                label: "Linkedin",
+                icon: (
+                  <LinkedinIcon className="w-6 h-6 text-black dark:text-white" />
+                ),
+              },
+              {
+                href: "/files/cv-alexandre-boissel.pdf",
+                label: "CV",
+                icon: <CVIcon className="w-6 h-6 text-black dark:text-white" />,
+              },
+            ].map((link, index) => (
+              <a
+                key={index}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 text-black dark:text-white hover:underline"
+                aria-label={link.label}
+              >
+                {link.icon}
+                <span>{link.label}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {!isScrolled && (
+        <div className="fixed bottom-6 left-[44%] transform -translate-x-1/2 text-center animate-bounce">
+          <div className="flex items-center space-x-2 text-gray-700 dark:text-gray-300">
+            <ArrowIcon className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+            <span className="text-lg">Scroll Down</span>
+            <ArrowIcon className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+          </div>
+        </div>
+      )}
+
+      {/* Section Projets */}
+      <section id="projects" className="max-w-7xl mx-auto px-4 py-16">
+        <ProjectsSection />
+      </section>
+
+      {/* Section Contact avec le composant ContactForm */}
+      <section
+        id="contact"
+        className="max-w-7xl mx-auto px-4 py-16 pt-36 pb-24"
+      >
+        <div className="border-b-2 mb-14 border-black dark:border-white">
+          <h2 className="text-3xl font-bold mb-4 italic">
+            {content.contactTitle}
+          </h2>
+          <p className="text-black dark:text-white mb-8">
+            {content.contactDescription}
+          </p>
+          <div className="flex space-x-4 mb-8 justify-center">
+            <a
+              href="mailto:hey@alexandreboissel.me"
+              className="flex items-center space-x-2 text-black dark:text-white hover:underline"
+              aria-label="Email"
+            >
+              <MailIcon className="w-6 h-6 text-black dark:text-white" />
+              <span>hey@alexandreboissel.me</span>
+            </a>
+            <a
+              href="https://linkedin.com"
+              className="flex items-center space-x-2 text-black dark:text-white hover:underline"
+              aria-label="LinkedIn"
+            >
+              <LinkedinIcon className="w-6 h-6 text-black dark:text-white" />
+              <span>Linkedin</span>
+            </a>
+          </div>
+        </div>
+
+        <ContactForm />
+      </section>
     </div>
   );
 }

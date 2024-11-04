@@ -1,0 +1,10 @@
+{
+  "welcome": "Bonjour et Bienvenue !",
+  "introduction": "Je m'appelle Alexandre, je suis un développeur Full-Stack, passionné de tech et de design depuis toujours ! 🫶",
+  "contactTitle": "Contact",
+  "contactDescription": "N'hésitez pas à me contacter en utilisant le formulaire ou les liens ci-dessous. J'attends de vos nouvelles avec impatience !",
+  "contactName": "Nom",
+  "contactEmail": "E-mail",
+  "contactMessage": "Message",
+  "contactSubmit": "Envoyer"
+}
