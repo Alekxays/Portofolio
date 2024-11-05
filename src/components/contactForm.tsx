@@ -9,7 +9,7 @@ export default function ContactForm() {
   const form = useRef();
   const [status, setStatus] = useState("");
 
-  const sendEmail = async (e) => {
+  const sendEmail = async (e: FormEvent) => {
     e.preventDefault();
     setStatus("Envoi en cours...");
 
