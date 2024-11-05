@@ -6,5 +6,6 @@
   "contactName": "Name",
   "contactEmail": "Email",
   "contactMessage": "Message",
-  "contactSubmit": "Send"
+  "contactSubmit": "Send",
+  "closeButton": "Close"
 }

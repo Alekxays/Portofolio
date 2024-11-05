@@ -28,8 +28,8 @@ export default function Home() {
 
   const cvLink =
     language === "fr"
-      ? "/files/CV-Without S-Info-FR.pdf"
-      : "/files/CV-Without S-Info-EN.pdf";
+      ? "/files/CV-Alexandre-BOISSEL-FR.pdf"
+      : "/files/CV-Alexandre-BOISSEL-EN.pdf";
 
   return (
     <div className="min-h-screen bg-[#e9ecef] dark:bg-[#212529] text-black dark:text-white">
