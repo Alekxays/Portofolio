@@ -8,17 +8,18 @@ import DotIcon from "../../public/img/dot.svg";
 import PauseIcon from "../../public/img/pause.svg";
 import FinishIcon from "../../public/img/finish.svg";
 
-function getStatusColor(status) {
-  switch (status) {
-    case "On going":
-      return "bg-blue-500";
-    case "Paused":
-      return "bg-yellow-500";
-    case "Finished":
-      return "bg-green-500";
-    default:
-      return "bg-gray-500";
-  }
+interface StatusColorMap {
+  [key: string]: string;
+}
+
+function getStatusColor(status: string): string {
+  const statusColorMap: StatusColorMap = {
+    "On going": "bg-blue-500",
+    Paused: "bg-yellow-500",
+    Finished: "bg-green-500",
+  };
+
+  return statusColorMap[status] || "bg-gray-500";
 }
 
 interface Project {
@@ -27,14 +28,19 @@ interface Project {
   description: string;
   status: string;
   links: string[];
+  date: string;
 }
 
-function truncateText(text, maxLength) {
+interface TruncateText {
+  (text: string, maxLength: number): string;
+}
+
+const truncateText: TruncateText = (text, maxLength) => {
   if (text.length > maxLength) {
     return text.slice(0, maxLength) + "...";
   }
   return text;
-}
+};
 
 const ProjectsSection = () => {
   const [projects, setProjects] = useState<Project[]>([]);
