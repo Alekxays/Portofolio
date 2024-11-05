@@ -31,7 +31,10 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
   };
 
   // Fonction de traduction pour le statut
-  const getStatusTranslation = (status: string, language: string) => {
+  const getStatusTranslation = (
+    status: "On going" | "Paused" | "Finished",
+    language: keyof typeof statusTranslations
+  ) => {
     const statusTranslations = {
       en: {
         "On going": "On going",
@@ -44,7 +47,7 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
         Finished: "Terminé",
       },
     };
-    return statusTranslations[language][status] || status;
+    return statusTranslations[language]?.[status] || status;
   };
 
   return (
