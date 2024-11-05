@@ -1,12 +1,12 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, FormEvent } from "react";
 import SentIcon from "../../public/img/sent.svg";
 import { useLanguage } from "../contexts/LanguageContext";
 
 export default function ContactForm() {
   const { content } = useLanguage();
-  const form = useRef();
+  const form = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState("");
 
   const sendEmail = async (e: FormEvent) => {
@@ -14,23 +14,26 @@ export default function ContactForm() {
     setStatus("Envoi en cours...");
 
     try {
-      const response = await fetch("https://formspree.io/f/xnnqpylq", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          from_name: form.current.from_name.value,
-          from_email: form.current.from_email.value,
-          message: form.current.message.value,
-        }),
-      });
+      if (form.current) {
+        const response = await fetch("https://formspree.io/f/xnnqpylq", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            from_name: (form.current["name"] as unknown as HTMLInputElement)
+              .value,
+            from_email: (form.current["email"] as HTMLInputElement).value,
+            message: (form.current["message"] as HTMLTextAreaElement).value,
+          }),
+        });
 
-      if (response.ok) {
-        setStatus("Message envoyé !");
-        form.current.reset();
-      } else {
-        setStatus("Erreur lors de l'envoi, veuillez réessayer.");
+        if (response.ok) {
+          setStatus("Message envoyé !");
+          form.current.reset();
+        } else {
+          setStatus("Erreur lors de l'envoi, veuillez réessayer.");
+        }
       }
     } catch (error) {
       console.error("Erreur lors de l'envoi:", error);

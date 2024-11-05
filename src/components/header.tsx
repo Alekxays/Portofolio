@@ -43,7 +43,12 @@ export default function Header() {
     };
   }, []);
 
-  const handleNavigationClick = (sectionId) => {
+  interface SectionOffset {
+    id: string;
+    offset: number;
+  }
+
+  const handleNavigationClick = (sectionId: string) => {
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
@@ -75,7 +80,7 @@ export default function Header() {
               <a
                 key={item.id}
                 role="button"
-                tabIndex="0"
+                tabIndex={0}
                 onClick={() => handleNavigationClick(item.id)}
                 className={`text-black dark:text-white flex items-center space-x-1 cursor-pointer transition-colors duration-200 ${
                   activeSection === item.id
