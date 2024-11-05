@@ -45,12 +45,17 @@ export default function Header() {
     };
   }, []);
 
-  const handleNavigationClick = (sectionId) => {
+  interface SectionOffset {
+    id: string;
+    offset: number;
+  }
+
+  const handleNavigationClick = (sectionId: string): void => {
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
       setActiveSection(sectionId);
-      setIsMenuOpen(false); // Ferme le menu après le clic sur un lien
+      setIsMenuOpen(false);
     }
   };
 
