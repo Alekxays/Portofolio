@@ -14,7 +14,7 @@ import MailIcon from "../../public/img/mail.svg";
 import ArrowIcon from "../../public/img/arrow.svg";
 
 export default function Home() {
-  const { content } = useLanguage();
+  const { content, language } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -25,6 +25,11 @@ export default function Home() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const cvLink =
+    language === "fr"
+      ? "/files/CV-Without S-Info-FR.pdf"
+      : "/files/CV-Without S-Info-EN.pdf";
 
   return (
     <div className="min-h-screen bg-[#e9ecef] dark:bg-[#212529] text-black dark:text-white">
@@ -55,7 +60,7 @@ export default function Home() {
                 ),
               },
               {
-                href: "/files/cv-alexandre-boissel.pdf",
+                href: cvLink, // Utilisez le lien du CV basé sur la langue ici
                 label: "CV",
                 icon: <CVIcon className="w-6 h-6 text-black dark:text-white" />,
               },
