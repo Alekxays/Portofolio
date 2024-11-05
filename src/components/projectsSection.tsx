@@ -10,6 +10,8 @@ import PauseIcon from "../../public/img/pause.svg";
 import FinishIcon from "../../public/img/finish.svg";
 import ProjectModal from "./projectModal";
 
+export type ProjectStatus = "On going" | "Paused" | "Finished";
+
 export interface Project {
   id: string;
   title: string;
@@ -18,9 +20,10 @@ export interface Project {
   competence: string[];
   comp: string[];
   date: string;
-  status: string;
+  status: ProjectStatus;
   pitch_fr: string;
   pitch_en: string;
+  image?: string;
 }
 
 interface StatusColorMap {
@@ -33,8 +36,24 @@ function getStatusColor(status: string): string {
     Paused: "bg-yellow-500",
     Finished: "bg-green-500",
   };
-
   return statusColorMap[status] || "bg-gray-500";
+}
+
+// Fonction de traduction pour les statuts de projet
+function getStatusTranslation(status: ProjectStatus, language: string): string {
+  const statusTranslations: Record<string, Record<ProjectStatus, string>> = {
+    en: {
+      "On going": "On going",
+      Paused: "Paused",
+      Finished: "Finished",
+    },
+    fr: {
+      "On going": "En cours",
+      Paused: "En pause",
+      Finished: "Terminé",
+    },
+  };
+  return statusTranslations[language]?.[status] || status;
 }
 
 const truncateText = (text: string, maxLength: number): string => {
@@ -85,7 +104,9 @@ const ProjectsSection = () => {
                   {project.status === "Finished" && (
                     <FinishIcon className="w-4 h-4 text-black dark:text-white" />
                   )}
-                  <span className="text-sm">{project.status}</span>
+                  <span className="text-sm">
+                    {getStatusTranslation(project.status, language)}
+                  </span>
                 </span>
                 <div className="flex flex-col text-right">
                   <span className="text-white text-lg font-semibold">
