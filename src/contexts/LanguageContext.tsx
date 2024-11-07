@@ -1,13 +1,20 @@
 "use client";
 
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 import fr from "../../public/locales/fr.json";
 import en from "../../public/locales/en.json";
 
 type Language = "fr" | "en";
+
 interface LanguageContextProps {
   language: Language;
-  content: typeof fr; // Utiliser le type des traductions
+  content: typeof fr;
   toggleLanguage: () => void;
 }
 
@@ -19,10 +26,20 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [language, setLanguage] = useState<Language>("fr");
   const [content, setContent] = useState(fr);
 
+  useEffect(() => {
+    // Charger la langue depuis le localStorage si elle existe
+    const storedLanguage = localStorage.getItem("language") as Language | null;
+    if (storedLanguage) {
+      setLanguage(storedLanguage);
+      setContent(storedLanguage === "fr" ? fr : en);
+    }
+  }, []);
+
   const toggleLanguage = () => {
     const newLanguage = language === "fr" ? "en" : "fr";
     setLanguage(newLanguage);
-    setContent(newLanguage === "fr" ? fr : en); // Change le contenu dynamiquement
+    setContent(newLanguage === "fr" ? fr : en);
+    localStorage.setItem("language", newLanguage); // Enregistrer la langue sélectionnée dans le localStorage
   };
 
   return (

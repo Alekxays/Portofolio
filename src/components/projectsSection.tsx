@@ -1,4 +1,3 @@
-// ProjectsSection.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -94,15 +93,25 @@ const ProjectsSection = () => {
                   className={`flex items-center px-3 py-1 rounded-md space-x-2 ${getStatusColor(
                     project.status
                   )}`}
+                  aria-label={getStatusTranslation(project.status, language)}
                 >
                   {project.status === "On going" && (
-                    <DotIcon className="w-4 h-4 text-black dark:text-white" />
+                    <DotIcon
+                      className="w-4 h-4 text-black dark:text-white"
+                      aria-label="En cours"
+                    />
                   )}
                   {project.status === "Paused" && (
-                    <PauseIcon className="w-4 h-4 text-black dark:text-white" />
+                    <PauseIcon
+                      className="w-4 h-4 text-black dark:text-white"
+                      aria-label="En pause"
+                    />
                   )}
                   {project.status === "Finished" && (
-                    <FinishIcon className="w-4 h-4 text-black dark:text-white" />
+                    <FinishIcon
+                      className="w-4 h-4 text-black dark:text-white"
+                      aria-label="Terminé"
+                    />
                   )}
                   <span className="text-sm">
                     {getStatusTranslation(project.status, language)}
@@ -127,6 +136,7 @@ const ProjectsSection = () => {
                 <p
                   key={idx}
                   className="text-slate-900 px-3 py-1 rounded text-sm bg-amber-300 dark:bg-amber-300 rounded-lg min-w-[60px] text-center"
+                  aria-label={`Compétence : ${comp}`}
                 >
                   {comp}
                 </p>

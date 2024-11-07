@@ -3,19 +3,24 @@ import { useEffect, useState } from "react";
 type Language = "fr" | "en";
 
 const useLanguage = () => {
-  const [language, setLanguage] = useState<Language>("fr");
+  const [language, setLanguage] = useState<Language>(() => {
+    if (typeof window !== "undefined") {
+      const storedLanguage = localStorage.getItem(
+        "language"
+      ) as Language | null;
+      return storedLanguage === "en" ? "en" : "fr"; // Définit "fr" par défaut
+    }
+    return "fr";
+  });
 
   useEffect(() => {
-    const storedLanguage = localStorage.getItem("language") as Language;
-    if (storedLanguage) {
-      setLanguage(storedLanguage);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("language", language);
     }
-  }, []);
+  }, [language]);
 
   const toggleLanguage = () => {
-    const newLanguage = language === "fr" ? "en" : "fr";
-    setLanguage(newLanguage);
-    localStorage.setItem("language", newLanguage);
+    setLanguage((prevLanguage) => (prevLanguage === "fr" ? "en" : "fr"));
   };
 
   return { language, toggleLanguage };

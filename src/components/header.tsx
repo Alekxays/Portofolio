@@ -45,11 +45,6 @@ export default function Header() {
     };
   }, []);
 
-  interface SectionOffset {
-    id: string;
-    offset: number;
-  }
-
   const handleNavigationClick = (sectionId: string): void => {
     const section = document.getElementById(sectionId);
     if (section) {
@@ -68,30 +63,24 @@ export default function Header() {
       }`}
       style={{ backdropFilter: isScrolled ? "blur(4px)" : "none" }}
     >
-      <div className="max-w-full px-4 lg:px-16 mx-auto flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 lg:px-16 flex items-center justify-between">
         <h1 className="text-xl lg:text-3xl text-black dark:text-white font-bold">
           Alexandre BOISSEL
         </h1>
 
         {/* Menu burger icon for mobile with animation */}
-        <div className="lg:hidden relative">
+        <div className="lg:hidden">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle Menu"
             className="text-black dark:text-white focus:outline-none"
           >
-            <div
-              className={`transition-transform duration-300 ${
-                isMenuOpen ? "rotate-45 transform translate-y-1" : ""
-              }`}
-            >
-              {isMenuOpen ? <HiX size={24} /> : <HiMenu size={24} />}
-            </div>
+            {isMenuOpen ? <HiX size={24} /> : <HiMenu size={24} />}
           </button>
 
           {/* Dropdown menu under the burger button */}
           {isMenuOpen && (
-            <div className="absolute right-0 mt-2 w-40 bg-[#e9ecef] dark:bg-[#212529] rounded-lg shadow-lg py-4 z-50 transition-transform duration-300">
+            <div className="absolute top-16 right-4 w-48 bg-[#e9ecef] dark:bg-[#212529] rounded-lg shadow-lg py-4 z-50">
               <nav className="flex flex-col items-start space-y-2 px-4">
                 {[
                   { id: "home", label: "Accueil", icon: HomeIcon },
@@ -100,14 +89,13 @@ export default function Header() {
                 ].map((item) => (
                   <a
                     key={item.id}
-                    role="button"
-                    tabIndex={0}
                     onClick={() => handleNavigationClick(item.id)}
                     className={`text-black dark:text-white flex items-center space-x-2 cursor-pointer transition-colors duration-200 w-full ${
                       activeSection === item.id
                         ? "text-blue-500 dark:text-[#8d99ae] font-semibold"
                         : ""
                     }`}
+                    role="button"
                   >
                     <item.icon width={20} height={20} aria-label={item.label} />
                     <span>{item.label}</span>
@@ -167,14 +155,13 @@ export default function Header() {
             ].map((item) => (
               <a
                 key={item.id}
-                role="button"
-                tabIndex={0}
                 onClick={() => handleNavigationClick(item.id)}
                 className={`text-sm lg:text-base text-black dark:text-white flex items-center space-x-1 cursor-pointer transition-colors duration-200 ${
                   activeSection === item.id
                     ? "text-blue-500 dark:text-[#8d99ae] font-semibold"
                     : ""
                 }`}
+                role="button"
               >
                 <item.icon width={20} height={20} aria-label={item.label} />
                 <span className="hidden sm:inline lg:pl-2">{item.label}</span>
