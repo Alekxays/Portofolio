@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { LanguageProvider } from "../contexts/LanguageContext";
@@ -7,9 +6,9 @@ import "./globals.css";
 import { Space_Mono } from "next/font/google";
 
 export const metadata: Metadata = {
-  title: "Alexandre BOISSEL - Développeur Full-Stack et Créatif",
+  title: "Alexandre BOISSEL - Portfolio",
   description:
-    "Explorez le portfolio d'Alexandre BOISSEL, développeur spécialisé en solutions numériques créatives.",
+    "Explorez le portfolio d'Alexandre BOISSEL, développeur full-stack",
   keywords: [
     "Alexandre BOISSEL",
     "développeur",
@@ -20,11 +19,10 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Alexandre BOISSEL - Portfolio",
-    description:
-      "Portfolio d'Alexandre BOISSEL, développeur expert en solutions numériques.",
+    description: "Portfolio d'Alexandre BOISSEL, développeur full-stack.",
     images: [
       {
-        url: "/public/img/home_emoji.png",
+        url: "/img/home_emoji.png",
         width: 800,
         height: 600,
         alt: "Portfolio d'Alexandre BOISSEL",
@@ -40,7 +38,7 @@ export const metadata: Metadata = {
       "Explorez les projets et compétences d'Alexandre BOISSEL, développeur créatif.",
     images: [
       {
-        url: "/public/img/home_emoji.png",
+        url: "/img/home_emoji.png",
         alt: "Portfolio d'Alexandre BOISSEL",
       },
     ],

@@ -84,7 +84,7 @@ const ProjectsSection = () => {
         {projects.map((project) => (
           <div
             key={project.id}
-            className="bg-[#495057] p-5 rounded-lg shadow-lg min-h-[250px] lg:min-h-[300px] flex flex-col justify-between cursor-pointer"
+            className="bg-[#495057] p-5 rounded-lg shadow-lg min-h-[250px] lg:min-h-[300px] flex flex-col justify-between cursor-pointer transform transition duration-300 hover:scale-105 hover:shadow-2xl"
             onClick={() => setSelectedProject(project)}
           >
             <div>
