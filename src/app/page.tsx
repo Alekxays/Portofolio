@@ -79,7 +79,7 @@ export default function Home() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center space-x-2 text-black dark:text-white hover:underline text-sm md:text-base"
+                  className="flex items-center space-x-2 text-blue-500 dark:text-blue-400 hover:underline text-sm md:text-base"
                   aria-label={link.label}
                 >
                   {link.icon}
@@ -90,11 +90,10 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Scroll down arrow */}
+        {/* Flèche de défilement vers le bas */}
         {!isScrolled && (
-          <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 text-center animate-bounce">
-            <div className="flex items-center space-x-2 text-gray-700 dark:text-gray-300">
-              <ArrowIcon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-gray-700 dark:text-gray-300" />
+          <div className="fixed bottom-6 transform -translate-x-1/2 text-center animate-bounce w-full">
+            <div className="flex flex-col items-center space-y-2 text-gray-700 dark:text-gray-300">
               <span className="text-xs sm:text-sm md:text-lg">Scroll Down</span>
               <ArrowIcon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-gray-700 dark:text-gray-300" />
             </div>
@@ -127,7 +126,7 @@ export default function Home() {
             <div className="flex flex-col md:flex-row items-center md:space-x-4 mb-4 md:mb-6 space-y-4 md:space-y-0 justify-center">
               <a
                 href="mailto:hey@alexandreboissel.me"
-                className="flex items-center space-x-2 text-black dark:text-white hover:underline text-sm md:text-base"
+                className="flex items-center space-x-2 text-blue-500 dark:text-blue-400 hover:underline text-sm md:text-base"
                 aria-label="Email"
               >
                 <MailIcon className="w-5 md:w-6 h-5 md:h-6" />
@@ -135,7 +134,7 @@ export default function Home() {
               </a>
               <a
                 href="https://linkedin.com"
-                className="flex items-center space-x-2 text-black dark:text-white hover:underline text-sm md:text-base"
+                className="flex items-center space-x-2 text-blue-500 dark:text-blue-400 hover:underline text-sm md:text-base"
                 aria-label="LinkedIn"
               >
                 <LinkedinIcon className="w-5 md:w-6 h-5 md:h-6" />

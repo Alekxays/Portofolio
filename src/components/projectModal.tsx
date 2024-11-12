@@ -102,16 +102,21 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
           }}
         ></div>
 
-        {/* Affichage de l'image ou texte de non-disponibilité */}
+        {/* Affichage des images ou texte de non-disponibilité */}
         <p className="text-left text-lg md:text-xl font-bold mb-2 mt-4">
-          Image
+          Images
         </p>
-        {project.image ? (
-          <img
-            src={project.image}
-            alt={`${project.title} image`}
-            className="rounded-lg max-w-full h-auto mb-6"
-          />
+        {project.image && project.image.length > 0 ? (
+          <div className="mb-6">
+            {project.image.map((image: string, index: number) => (
+              <img
+                key={index}
+                src={`https://i.imgur.com/${image}.png`}
+                alt={`${project.title} image ${index + 1}`}
+                className="rounded-lg w-full h-auto"
+              />
+            ))}
+          </div>
         ) : (
           <p className="text-gray-400 mb-6 text-sm md:text-base">
             Pas disponible pour le moment

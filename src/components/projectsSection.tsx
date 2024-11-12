@@ -22,7 +22,7 @@ export interface Project {
   status: ProjectStatus;
   pitch_fr: string;
   pitch_en: string;
-  image?: string;
+  image?: string[];
 }
 
 interface StatusColorMap {
