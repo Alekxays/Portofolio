@@ -64,7 +64,7 @@ export default function Home() {
                   icon: <GithubIcon className="w-5 md:w-6 h-5 md:h-6" />,
                 },
                 {
-                  href: "https://www.linkedin.com/in/alexandre-boissel/",
+                  href: "https://www.linkedin.com/in/alexandreboissel/",
                   label: "Linkedin",
                   icon: <LinkedinIcon className="w-5 md:w-6 h-5 md:h-6" />,
                 },
