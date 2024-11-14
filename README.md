@@ -34,7 +34,7 @@ Clonez ce dépôt pour l’exécuter localement.
  
  
 ```bash
-git clone https://github.com/AlexandreBoissel/portfolio.git
+git clone https://github.com/Alekxays/portfolio.git
 
 ```
 
