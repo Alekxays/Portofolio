@@ -150,7 +150,7 @@ Pour déployer sur Vercel, suivez les instructions de [la documentation de Next.
 
 •  **Email** : hey@alexandreboissel.me
 
-•  **LinkedIn** : [linkedin.com/in/alexandre-boissel](https://www.linkedin.com/in/alexandre-boissel/)
+•  **LinkedIn** : [linkedin.com/in/alexandreboissel](https://www.linkedin.com/in/alexandreboissel/)
 
   
 
