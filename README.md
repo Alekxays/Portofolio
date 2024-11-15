@@ -1,157 +1,101 @@
-# 🌐 Mon Portfolio - Alexandre BOISSEL
+# 🌐 My Portfolio - Alexandre BOISSEL
 
-  
+Welcome to my personal portfolio GitHub repository! This project is built with [Next.js](https://nextjs.org), [TypeScript](https://www.typescriptlang.org/), and optimized to provide a smooth, fast, and modern user experience. 🚀
 
-Bienvenue sur le dépôt GitHub de mon portfolio personnel ! Ce projet est conçu avec [Next.js](https://nextjs.org), [TypeScript](https://www.typescriptlang.org/), et optimisé pour offrir une expérience utilisateur fluide, rapide et moderne. 🚀
+## 📸 Portfolio Overview
 
-  
+✨ Access the live demo here: [**alexandreboissel.me**](http://alexandreboissel.me)
 
-## 📸 Aperçu du Portfolio
+Discover my projects, my skills, and how I can help you realize your ideas with tailor-made digital solutions.
 
-  
+## 🚀 Project Startup**
 
- ✨ Accédez à la démo en direct ici : [**alexandreboissel.me**](http://alexandreboissel.me)
-
-  
-
-Découvrez mes projets, mes compétences, et comment je peux vous aider à concrétiser vos idées grâce à des solutions numériques sur mesure.
-
-  
-
-## 🚀 Démarrage du Projet**
-
-  
-
-Clonez ce dépôt pour l’exécuter localement.
-
-  
+Clone this repository to run it locally.
 
 **Installation**
 
-  
+1. Clone the repository:
 
-1.  Clonez le dépôt :
- 
- 
 ```bash
 git clone https://github.com/Alekxays/portfolio.git
 
 ```
 
-  
+2. Install dependencies:
 
-2.  Installez les dépendances :
-
-  
 ```bash
 npm install
 
-# ou
+# or
 
 yarn install
 ```
-  
 
-  
+**Development**
 
-  
+Start the development server:
 
-**Développement**
-
-  
-
-Lancez le serveur de développement :
-
-  
 ```bash
 npm run dev
 
-# ou
+# or
 
 yarn dev
 
 ```
 
-Rendez-vous sur [http://localhost:3000](http://localhost:3000) pour voir le site en action ! 🖥️
+Visit [http://localhost:3000](http://localhost:3000) to see the site in action! 🖥️
 
-  
+## 📁 Project Structure
 
-## 📁 Structure du Projet
+• app/ : Contains the Next.js application pages and components.
 
-  
+• components/ : Reusable components for modular interfaces.
 
-•  app/ : Contient les pages et composants de l’application Next.js.
+• public/ : Images, icons, and other public files.
 
-•  components/ : Les composants réutilisables pour des interfaces modulaires.
+• libs/ : Firebase configuration and other built-in libraries.
 
-•  public/ : Images, icônes, et autres fichiers publics.
+## 📚 Technologies Used
 
-•  libs/ : Configuration Firebase et autres bibliothèques intégrées.
+• **Next.js** - Modern React framework for an optimized experience ⚡️
 
-  
+• **TypeScript** - Static types for more robust code 🛠
 
-## 📚 Technologies Utilisées
+• **Tailwind CSS** - For fast and responsive styling 💅
 
-  
+• **Firebase** - Serverless backend for storage and authentication 🔥
 
-•  **Next.js** - Framework React moderne pour une expérience optimisée ⚡️
+## 🛠 Features
 
-•  **TypeScript** - Types statiques pour un code plus robuste 🛠
+• 🌑 **Dark / light mode**: Adaptive interface for all environments
 
-•  **Tailwind CSS** - Pour un style rapide et réactif 💅
+• 🌍 **Multi-languages**: French and English for an experience accessible to all
 
-•  **Firebase** - Backend serverless pour le stockage et l’authentification 🔥
+• 📱 **Responsive**: Suitable for mobile, tablet, and desktop
 
-  
+• 🖼️ **Animations and icons**: For dynamic and pleasant navigation
 
-## 🛠 Fonctionnalités
+## 📦 Deployment**
 
-  
+The portfolio is hosted and deployed via [Vercel](https://vercel.com) for fast and hassle-free updates.
 
-•  🌑 **Mode sombre / clair** : Interface adaptative pour tous les environnements
+To deploy to Vercel, follow the instructions in [Next.js documentation](https://nextjs.org/docs/app/building-your-application/deploying).
 
-•  🌍 **Multi-langues** : Français et anglais pour une expérience accessible à tous
+## 🌐 Useful Links
 
-•  📱 **Responsive** : Adapté pour mobile, tablette, et bureau
+• [**Next.js Documentation**](https://nextjs.org/docs) - Learn more about Next.js and its features
 
-•  🖼️ **Animations et icônes** : Pour une navigation dynamique et agréable
+• [**Next.js Interactive Tutorial**](https://nextjs.org/learn) - An online course for developers of all levels
 
-  
-
-## 📦 Déploiement**
-
-  
-
-Le portfolio est hébergé et déployé via [Vercel](https://vercel.com) pour des mises à jour rapides et sans tracas.
-
-  
-
-Pour déployer sur Vercel, suivez les instructions de [la documentation de Next.js](https://nextjs.org/docs/app/building-your-application/deploying).
-
-  
-
-## 🌐 Liens Utiles
-
-  
-
-•  [**Next.js Documentation**](https://nextjs.org/docs) - En savoir plus sur Next.js et ses fonctionnalités
-
-•  [**Tutoriel Interactif Next.js**](https://nextjs.org/learn) - Un cours en ligne pour les développeurs de tous niveaux
-
-•  [**GitHub Next.js**](https://github.com/vercel/next.js) - Rejoignez la communauté et contribuez 🚀
-
-  
+• [**Next.js GitHub**](https://github.com/vercel/next.js) - Join the community and contribute 🚀
 
 ## 📧 Contact
 
-  
-
 **Alexandre BOISSEL**
 
-•  **Email** : hey@alexandreboissel.me
+• **Email** : hey@alexandreboissel.me
 
-•  **LinkedIn** : [linkedin.com/in/alexandreboissel](https://www.linkedin.com/in/alexandreboissel/)
+• **LinkedIn** : [linkedin.com/in/alexandreboissel](https://www.linkedin.com/in/alexandreboissel/)
 
-  
-
-Merci d’avoir visité mon portfolio ! N’hésitez pas à me contacter pour toute question ou opportunité de collaboration. 👋
+Thanks for visiting my portfolio! Feel free to contact me for any questions or collaboration opportunities. 👋
