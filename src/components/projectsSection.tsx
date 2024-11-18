@@ -64,23 +64,27 @@ const getStatusTranslation = (
 const truncateText = (text: string, maxLength: number): string =>
   text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
 
-const renderLink = (link: ProjectLink, title: string) => {
-  const linkTypes = {
-    github: {
-      icon: <GithubIcon className="w-5 h-5" />,
-      label: "GitHub",
-    },
-    figma: {
-      icon: <FigmaIcon className="w-5 h-5" />,
-      label: "Figma",
-    },
-    website: {
-      icon: <WebsiteIcon className="w-5 h-5" />,
-      label: "Website",
-    },
-  };
+// Déplacer la déclaration de linkTypes ici
+const linkTypes = {
+  github: {
+    icon: <GithubIcon className="w-5 h-5" />,
+    label: "GitHub",
+  },
+  figma: {
+    icon: <FigmaIcon className="w-5 h-5" />,
+    label: "Figma",
+  },
+  website: {
+    icon: <WebsiteIcon className="w-5 h-5" />,
+    label: "Website",
+  },
+};
 
-  const { icon, label } = linkTypes[link.type] || {
+// Définir un type pour les clés de linkTypes
+type LinkType = keyof typeof linkTypes;
+
+const renderLink = (link: ProjectLink, title: string) => {
+  const { icon, label } = linkTypes[link.type as LinkType] || {
     icon: null,
     label: link.type, // Si le type est inconnu, affichez simplement le type
   };
