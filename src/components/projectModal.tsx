@@ -10,10 +10,11 @@ import WebsiteIcon from "../../public/img/website.svg";
 interface ProjectModalProps {
   project: Project;
   onClose: () => void;
+  language: string;
 }
 
-const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
-  const { language } = useLanguage();
+const ProjectModal = ({ project, onClose, language }: ProjectModalProps) => {
+  const { language: contextLanguage } = useLanguage();
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -50,23 +51,25 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
     return statusTranslations[language]?.[status] || status;
   };
 
-  const renderLink = (link: ProjectLink) => {
-    const linkTypes = {
-      github: {
-        icon: <GithubIcon className="w-5 h-5" />,
-        label: "GitHub",
-      },
-      figma: {
-        icon: <FigmaIcon className="w-5 h-5" />,
-        label: "Figma",
-      },
-      website: {
-        icon: <WebsiteIcon className="w-5 h-5" />,
-        label: "Website",
-      },
-    };
+  type LinkType = "github" | "figma" | "website";
 
-    const { icon, label } = linkTypes[link.type] || {
+  const linkTypes: Record<LinkType, { icon: JSX.Element; label: string }> = {
+    github: {
+      icon: <GithubIcon className="w-5 h-5" />,
+      label: "GitHub",
+    },
+    figma: {
+      icon: <FigmaIcon className="w-5 h-5" />,
+      label: "Figma",
+    },
+    website: {
+      icon: <WebsiteIcon className="w-5 h-5" />,
+      label: "Website",
+    },
+  };
+
+  const renderLink = (link: ProjectLink) => {
+    const { icon, label } = linkTypes[link.type as LinkType] || {
       icon: null,
       label: link.type,
     };
@@ -113,7 +116,7 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
               project.status
             )} mb-4 md:mb-0`}
           >
-            {getStatusTranslation(project.status, language)}
+            {getStatusTranslation(project.status, language as "fr" | "en")}
           </span>
 
           <div className="text-left md:text-right md:ml-4 flex flex-col items-start md:items-end">
