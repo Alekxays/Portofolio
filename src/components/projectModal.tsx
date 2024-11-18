@@ -48,8 +48,18 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
     return statusTranslations[language]?.[status] || status;
   };
 
+  const handleBackgroundClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    // Vérifie si le clic a eu lieu sur le conteneur de l'arrière-plan
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 px-4 md:px-0 overflow-y-auto">
+    <div
+      className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 px-4 md:px-0 overflow-y-auto"
+      onClick={handleBackgroundClick} // Ajout de l'événement de clic
+    >
       <div className="bg-gradient-to-b from-slate-700 to-slate-800 p-6 md:p-8 rounded-lg shadow-lg w-full max-w-lg md:max-w-2xl max-h-[90vh] overflow-y-auto relative">
         <button
           onClick={onClose}

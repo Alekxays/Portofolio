@@ -7,5 +7,14 @@
   "contactEmail": "E-mail",
   "contactMessage": "Message",
   "contactSubmit": "Envoyer",
-  "closeButton": "Fermer"
+  "closeButton": "Fermer",
+  "aboutMeTitle": "À propos de moi",
+  "aboutMeAltText": "Image de Alexandre Boissel",
+  "aboutMeParagraph1": "Bonjour ! Je suis Alexandre Boissel, un développeur passionné spécialisé dans la création de solutions web et mobiles modernes. Actuellement étudiant à Epitech, je perfectionne mes compétences en ingénierie logicielle et en innovation numérique. Mon ambition ? Concevoir et développer des expériences digitales percutantes qui répondent aux besoins des utilisateurs et vont au-delà de leurs attentes.",
+  "aboutMeParagraph2": "Au fil de mon parcours, j’ai travaillé sur des projets variés, allant de la création d’un site portfolio à Animeo, une application dédiée à la gestion de la santé animale. Mon expertise technique inclut des technologies comme React, Next.js, Tailwind CSS, Firebase, Docker et Python. Toujours curieux, j’aime relever de nouveaux défis et approfondir mes connaissances.",
+  "aboutMeParagraph3": "Je crois en la force de la collaboration, de la curiosité et de l’apprentissage continu pour repousser les limites de la technologie. En dehors du développement, j’adore explorer les tendances tech, contribuer à des projets créatifs ou m’amuser sur des jeux vidéo.",
+  "aboutMeConclusion": "Travaillons ensemble pour donner vie à vos idées ! 🚀",
+  "contactSending": "Envoi en cours...",
+  "contactSuccess": "Message envoyé avec succès !",
+  "contactError": "Une erreur s'est produite lors de l'envoi du message."
 }

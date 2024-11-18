@@ -16,6 +16,9 @@ interface LanguageContextProps {
   language: Language;
   content: typeof fr;
   toggleLanguage: () => void;
+  contactSending: string;
+  contactSuccess: string;
+  contactError: string;
 }
 
 const LanguageContext = createContext<LanguageContextProps | undefined>(
@@ -43,7 +46,16 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <LanguageContext.Provider value={{ language, content, toggleLanguage }}>
+    <LanguageContext.Provider
+      value={{
+        language,
+        content,
+        toggleLanguage,
+        contactSending: content.contactSending,
+        contactSuccess: content.contactSuccess,
+        contactError: content.contactError,
+      }}
+    >
       {children}
     </LanguageContext.Provider>
   );
