@@ -1,17 +1,19 @@
 "use client";
 
 import { useEffect } from "react";
-import { Project } from "./projectsSection";
+import { Project, ProjectLink } from "./projectsSection";
 import { useLanguage } from "../contexts/LanguageContext";
+import GithubIcon from "../../public/img/github.svg";
+import FigmaIcon from "../../public/img/figma.svg";
+import WebsiteIcon from "../../public/img/website.svg";
 
 interface ProjectModalProps {
   project: Project;
   onClose: () => void;
-  language: string;
 }
 
 const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
-  const { content, language } = useLanguage();
+  const { language } = useLanguage();
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -48,8 +50,43 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
     return statusTranslations[language]?.[status] || status;
   };
 
+  const renderLink = (link: ProjectLink) => {
+    const linkTypes = {
+      github: {
+        icon: <GithubIcon className="w-5 h-5" />,
+        label: "GitHub",
+      },
+      figma: {
+        icon: <FigmaIcon className="w-5 h-5" />,
+        label: "Figma",
+      },
+      website: {
+        icon: <WebsiteIcon className="w-5 h-5" />,
+        label: "Website",
+      },
+    };
+
+    const { icon, label } = linkTypes[link.type] || {
+      icon: null,
+      label: link.type,
+    };
+
+    return (
+      <a
+        key={link.type}
+        href={link.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center space-x-2 text-white hover:text-blue-400 transition duration-200"
+        aria-label={`${label} link for ${project.title}`}
+      >
+        {icon}
+        <span>{label}</span>
+      </a>
+    );
+  };
+
   const handleBackgroundClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    // Vérifie si le clic a eu lieu sur le conteneur de l'arrière-plan
     if (e.target === e.currentTarget) {
       onClose();
     }
@@ -58,7 +95,7 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
   return (
     <div
       className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 px-4 md:px-0 overflow-y-auto"
-      onClick={handleBackgroundClick} // Ajout de l'événement de clic
+      onClick={handleBackgroundClick}
     >
       <div className="bg-gradient-to-b from-slate-700 to-slate-800 p-6 md:p-8 rounded-lg shadow-lg w-full max-w-lg md:max-w-2xl max-h-[90vh] overflow-y-auto relative">
         <button
@@ -97,6 +134,11 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                   {skill}
                 </div>
               ))}
+            </div>
+
+            {/* Liens */}
+            <div className="flex flex-wrap gap-4 mt-4">
+              {project.links?.map((link) => renderLink(link))}
             </div>
           </div>
         </div>
