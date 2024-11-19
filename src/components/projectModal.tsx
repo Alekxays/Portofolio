@@ -119,7 +119,7 @@ const ProjectModal = ({ project, onClose, language }: ProjectModalProps) => {
             {getStatusTranslation(project.status, language as "fr" | "en")}
           </span>
 
-          <div className="text-left md:text-right md:ml-4 flex flex-col items-start md:items-end">
+          <div className="text-left md:text-right md:ml-4 flex flex-col items-start md:items-end w-full">
             <h2 className="text-xl md:text-2xl font-bold text-white">
               {project.title}
             </h2>
@@ -127,16 +127,19 @@ const ProjectModal = ({ project, onClose, language }: ProjectModalProps) => {
               {project.date}
             </p>
 
-            {/* Compétences */}
-            <div className="flex flex-wrap gap-2 mt-2">
-              {project.competence.map((skill, idx) => (
-                <div
-                  key={idx}
-                  className="text-slate-900 px-2 py-1 rounded text-xs md:text-sm bg-amber-300 dark:bg-amber-300 min-w-[60px] text-center"
-                >
-                  {skill}
-                </div>
-              ))}
+            {/* Conteneur pour les compétences */}
+            <div className="flex flex-col items-end mt-2">
+              <div className="flex flex-wrap gap-2 justify-end">
+                {project.competence.map((comp, idx) => (
+                  <span
+                    key={idx}
+                    className="text-slate-900 px-3 py-1 rounded text-sm bg-amber-300 dark:bg-amber-300 min-w-[60px] text-center"
+                    aria-label={`Compétence : ${comp}`}
+                  >
+                    {comp}
+                  </span>
+                ))}
+              </div>
             </div>
 
             {/* Liens */}
@@ -147,7 +150,7 @@ const ProjectModal = ({ project, onClose, language }: ProjectModalProps) => {
         </div>
 
         {/* Contenu du modal */}
-        <p className="text-left text-lg md:text-xl font-bold mb-2 mt-4">
+        <p className="text-left text-lg md:text-xl text-white font-bold mb-2 mt-4">
           Pitch
         </p>
         <div
@@ -158,7 +161,7 @@ const ProjectModal = ({ project, onClose, language }: ProjectModalProps) => {
         ></div>
 
         {/* Affichage des images ou texte de non-disponibilité */}
-        <p className="text-left text-lg md:text-xl font-bold mb-2 mt-4">
+        <p className="text-left text-lg md:text-xl font-bold mb-2 mt-4 text-white">
           Images
         </p>
         {project.image && project.image.length > 0 ? (

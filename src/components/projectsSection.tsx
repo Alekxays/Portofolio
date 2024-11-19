@@ -151,7 +151,7 @@ const ProjectsSection = () => {
             onClick={() => setSelectedProject(project)}
             aria-labelledby={`project-${project.id}-title`}
           >
-            <header className="flex justify-between items-center mb-6 border-b-2 pb-5">
+            <header className="flex justify-between items-center mb-6 border-b-2 pb-5 text-white">
               <span
                 className={`flex items-center px-3 py-1 rounded-md space-x-2 ${getStatusColor(
                   project.status
