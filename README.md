@@ -8,7 +8,7 @@ Welcome to my personal portfolio GitHub repository! This project is built with [
 
 Discover my projects, my skills, and how I can help you realize your ideas with tailor-made digital solutions.
 
-## 🚀 Project Startup**
+## 🚀 Project Startup
 
 Clone this repository to run it locally.
 
