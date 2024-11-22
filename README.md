@@ -76,7 +76,7 @@ Visit [http://localhost:3000](http://localhost:3000) to see the site in action! 
 
 • 🖼️ **Animations and icons**: For dynamic and pleasant navigation
 
-## 📦 Deployment**
+## 📦 Deployment
 
 The portfolio is hosted and deployed via [Vercel](https://vercel.com) for fast and hassle-free updates.
 
