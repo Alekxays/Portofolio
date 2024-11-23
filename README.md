@@ -8,7 +8,7 @@ Welcome to my personal portfolio GitHub repository! This project is built with [
 
 Discover my projects, my skills, and how I can help you realize your ideas with tailor-made digital solutions.
 
-## 🚀 Project Startup**
+## 🚀 Project Startup
 
 Clone this repository to run it locally.
 
@@ -76,7 +76,7 @@ Visit [http://localhost:3000](http://localhost:3000) to see the site in action! 
 
 • 🖼️ **Animations and icons**: For dynamic and pleasant navigation
 
-## 📦 Deployment**
+## 📦 Deployment
 
 The portfolio is hosted and deployed via [Vercel](https://vercel.com) for fast and hassle-free updates.
 
