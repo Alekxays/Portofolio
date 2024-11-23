@@ -18,17 +18,26 @@ export default function ContactForm() {
     if (!formRef.current) return;
 
     const formData = {
-      from_name: formRef.current.elements.namedItem("name") as HTMLInputElement,
-      from_email: formRef.current.elements.namedItem(
-        "email"
-      ) as HTMLInputElement,
-      message: formRef.current.elements.namedItem(
-        "message"
-      ) as HTMLTextAreaElement,
+      from_name:
+        (formRef.current.elements.namedItem("name") as HTMLInputElement)
+          ?.value || "",
+      from_email:
+        (formRef.current.elements.namedItem("email") as HTMLInputElement)
+          ?.value || "",
+      message:
+        (formRef.current.elements.namedItem("message") as HTMLTextAreaElement)
+          ?.value || "",
     };
 
+    const formSpreeUrl = process.env.NEXT_PUBLIC_FORM_SPREE_URL;
+    if (!formSpreeUrl) {
+      console.error("FORM_SPREE_URL n'est pas défini");
+      setStatus("error");
+      return;
+    }
+
     try {
-      const response = await fetch("https://formspree.io/f/xnnqpylq", {
+      const response = await fetch(formSpreeUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

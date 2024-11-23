@@ -8,7 +8,7 @@ import MoonIcon from "../../public/img/moon.svg";
 import HomeIcon from "../../public/img/home.svg";
 import ProjectsIcon from "../../public/img/projects.svg";
 import ContactIcon from "../../public/img/contact.svg";
-import AboutMeIcon from "../../public/img/aboutme.svg"; // Assurez-vous que ce fichier existe
+import AboutMeIcon from "../../public/img/aboutme.svg";
 import FranceIcon from "../../public/img/france.svg";
 import USAIcon from "../../public/img/usa.svg";
 import { HiMenu, HiX } from "react-icons/hi";

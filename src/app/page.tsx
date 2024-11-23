@@ -133,7 +133,7 @@ export default function Home() {
         >
           <h2
             id="contact-title"
-            className="text-2xl md:text-3xl font-bold mb-6 text-center"
+            className="text-2xl md:text-3xl font-bold mb-6 text-left italic"
           >
             {content.contactTitle}
           </h2>

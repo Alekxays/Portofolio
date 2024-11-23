@@ -5,9 +5,9 @@ type Theme = "light" | "dark";
 const useColorTheme = () => {
   const [theme, setTheme] = useState<Theme>(() => {
     if (typeof window !== "undefined") {
-      return (localStorage.getItem("theme") as Theme) || "light";
+      return (localStorage.getItem("theme") as Theme) || "dark";
     }
-    return "light";
+    return "dark";
   });
 
   useEffect(() => {
@@ -17,7 +17,6 @@ const useColorTheme = () => {
     if (storedTheme) {
       setTheme(storedTheme);
     } else {
-      // Détection des préférences système pour le thème
       const prefersDark = window.matchMedia(
         "(prefers-color-scheme: dark)"
       ).matches;
