@@ -150,7 +150,7 @@ export default function Home() {
               <span>hey@alexandreboissel.me</span>
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/alexandreboissel/"
               className="flex items-center space-x-2 text-blue-500 dark:text-blue-400 hover:underline text-sm md:text-base"
               aria-label="Visit Alexandre's LinkedIn"
             >
