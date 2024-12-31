@@ -1,16 +1,19 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import ProjectsSection from "@/components/projectsSection";
-import ContactForm from "@/components/contactForm";
-import AboutMe from "@/components/aboutMe";
+import dynamic from "next/dynamic";
 import { useLanguage } from "@/contexts/LanguageContext";
+
 import GithubIcon from "../../public/img/github.svg";
 import LinkedinIcon from "../../public/img/linkedin.svg";
 import CVIcon from "../../public/img/cv.svg";
 import MailIcon from "../../public/img/mail.svg";
 import ArrowIcon from "../../public/img/arrow.svg";
+
+const ProjectsSection = dynamic(() => import("@/components/projectsSection"));
+const ContactForm = dynamic(() => import("@/components/contactForm"));
+const AboutMe = dynamic(() => import("@/components/aboutMe"));
 
 export default function Home() {
   const { content, language } = useLanguage();
@@ -30,7 +33,7 @@ export default function Home() {
   }, []);
 
   return (
-    <>
+    <React.Fragment>
       <main
         className="min-h-screen bg-[#e9ecef] dark:bg-[#212529] text-black dark:text-white"
         role="main"
@@ -150,7 +153,8 @@ export default function Home() {
               <span>hey@alexandreboissel.me</span>
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/alexandreboissel/"
+              target="_blank"
               className="flex items-center space-x-2 text-blue-500 dark:text-blue-400 hover:underline text-sm md:text-base"
               aria-label="Visit Alexandre's LinkedIn"
             >
@@ -161,6 +165,6 @@ export default function Home() {
           <ContactForm />
         </section>
       </main>
-    </>
+    </React.Fragment>
   );
 }

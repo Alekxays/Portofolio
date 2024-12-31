@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
+import dynamic from "next/dynamic";
 import { LanguageProvider } from "../contexts/LanguageContext";
 import "./globals.css";
 import { Space_Mono } from "next/font/google";
+
+const Header = dynamic(() => import("@/components/header"));
+const Footer = dynamic(() => import("@/components/footer"));
 
 export const metadata: Metadata = {
   title: "Alexandre BOISSEL - Portfolio",
