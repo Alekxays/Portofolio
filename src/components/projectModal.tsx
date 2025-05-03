@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Project, ProjectLink } from "./projectsSection";
 import { useLanguage } from "../contexts/LanguageContext";
-import GithubIcon from "../../public/img/github.svg";
-import FigmaIcon from "../../public/img/figma.svg";
-import WebsiteIcon from "../../public/img/website.svg";
+import GithubIcon from "/public/img/github.svg";
+import FigmaIcon from "/public/img/figma.svg";
+import WebsiteIcon from "/public/img/website.svg";
 
 interface ProjectModalProps {
   project: Project;
@@ -14,46 +14,63 @@ interface ProjectModalProps {
 }
 
 const ProjectModal = ({ project, onClose, language }: ProjectModalProps) => {
+  const modalRef = useRef<HTMLDivElement>(null);
   const { language: contextLanguage } = useLanguage();
 
+  // Bloquer le scroll du body quand la modale est ouverte
   useEffect(() => {
+    const originalStyle = window.getComputedStyle(document.body).overflow;
     document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "auto";
+
+    // Gestion du focus pour l'accessibilité
+    modalRef.current?.focus();
+
+    // Gestion de la touche Escape pour fermer la modale
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
     };
-  }, []);
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalStyle;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onClose]);
+
+  const statusColorMap = {
+    "On going": "bg-primary",
+    Paused: "bg-warning",
+    Finished: "bg-success",
+  };
 
   const getStatusColor = (status: keyof typeof statusColorMap): string => {
-    const statusColorMap = {
-      "On going": "bg-blue-500",
-      Paused: "bg-yellow-500",
-      Finished: "bg-green-500",
-    };
-    return statusColorMap[status] || "bg-gray-500";
+    return statusColorMap[status] || "bg-muted";
+  };
+
+  const statusTranslations = {
+    en: {
+      "On going": "On going",
+      Paused: "Paused",
+      Finished: "Finished",
+    },
+    fr: {
+      "On going": "En cours",
+      Paused: "En pause",
+      Finished: "Terminé",
+    },
   };
 
   const getStatusTranslation = (
     status: "On going" | "Paused" | "Finished",
     language: keyof typeof statusTranslations
   ) => {
-    const statusTranslations = {
-      en: {
-        "On going": "On going",
-        Paused: "Paused",
-        Finished: "Finished",
-      },
-      fr: {
-        "On going": "En cours",
-        Paused: "En pause",
-        Finished: "Terminé",
-      },
-    };
     return statusTranslations[language]?.[status] || status;
   };
 
   type LinkType = "github" | "figma" | "website";
 
-  const linkTypes: Record<LinkType, { icon: JSX.Element; label: string }> = {
+  const linkTypes: Record<LinkType, { icon: React.JSX.Element; label: string }> = {
     github: {
       icon: <GithubIcon className="w-5 h-5" />,
       label: "GitHub",
@@ -80,11 +97,16 @@ const ProjectModal = ({ project, onClose, language }: ProjectModalProps) => {
         href={link.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center space-x-2 text-white hover:text-blue-400 transition duration-200"
+        className="
+          flex items-center gap-2 px-3 py-1.5 
+          bg-primary/20 hover:bg-primary/30
+          rounded-md transition-colors duration-fast
+          focus-visible-ring
+        "
         aria-label={`${label} link for ${project.title}`}
       >
         {icon}
-        <span>{label}</span>
+        <span className="text-sm font-medium">{label}</span>
       </a>
     );
   };
@@ -97,43 +119,73 @@ const ProjectModal = ({ project, onClose, language }: ProjectModalProps) => {
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 px-4 md:px-0 overflow-y-auto"
+      className="
+        fixed inset-0 bg-black/70 
+        flex justify-center items-center z-50 
+        px-4 py-8 md:px-0 overflow-y-auto
+        backdrop-blur-sm animate-fade-in
+      "
       onClick={handleBackgroundClick}
+      aria-modal="true"
+      role="dialog"
+      aria-labelledby="modal-title"
     >
-      <div className="bg-gradient-to-b from-slate-700 to-slate-800 p-6 md:p-8 rounded-lg shadow-lg w-full max-w-lg md:max-w-2xl max-h-[90vh] overflow-y-auto relative">
+      <div
+        ref={modalRef}
+        className="
+          bg-card p-6 md:p-8 rounded-lg 
+          shadow-lg w-full max-w-lg md:max-w-2xl 
+          max-h-[85vh] overflow-y-auto relative
+          border border-card-border animate-slide-up
+        "
+        tabIndex={-1}
+      >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-white text-xl font-bold"
+          className="
+            absolute top-4 right-4 p-2
+            text-foreground hover:text-error
+            rounded-full bg-card-hover/50
+            hover:bg-card-hover
+            transition-colors duration-fast
+            focus-visible-ring
+          "
           aria-label="Close modal"
         >
-          &times;
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
         </button>
 
-        {/* En-tête avec statut, titre, date et compétences */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 pb-4 mb-4">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-card-border pb-4 mb-6 gap-4">
           <span
-            className={`flex items-center px-3 py-1 rounded-md text-white text-sm ${getStatusColor(
-              project.status
-            )} mb-4 md:mb-0`}
+            className={`
+              flex items-center px-3 py-1 rounded-md 
+              text-sm font-medium ${getStatusColor(project.status)}
+            `}
           >
             {getStatusTranslation(project.status, language as "fr" | "en")}
           </span>
 
           <div className="text-left md:text-right md:ml-4 flex flex-col items-start md:items-end w-full">
-            <h2 className="text-xl md:text-2xl font-bold text-white">
+            <h2 id="modal-title" className="text-xl md:text-2xl font-bold text-foreground">
               {project.title}
             </h2>
-            <p className="text-slate-400 text-sm md:text-base">
+            <p className="text-muted text-sm md:text-base">
               {project.date}
             </p>
 
-            {/* Conteneur pour les compétences */}
             <div className="flex flex-col items-end mt-2">
               <div className="flex flex-wrap gap-2 justify-end">
                 {project.competence.map((comp, idx) => (
                   <span
                     key={idx}
-                    className="text-slate-900 px-3 py-1 rounded text-sm bg-amber-300 dark:bg-amber-300 min-w-[60px] text-center"
+                    className="
+                      text-foreground px-3 py-1 rounded text-xs
+                      bg-accent/10 border border-accent/20
+                      min-w-[60px] text-center font-medium
+                    "
                     aria-label={`Compétence : ${comp}`}
                   >
                     {comp}
@@ -142,44 +194,56 @@ const ProjectModal = ({ project, onClose, language }: ProjectModalProps) => {
               </div>
             </div>
 
-            {/* Liens */}
-            <div className="flex flex-wrap gap-4 mt-4">
+            <div className="flex flex-wrap gap-2 mt-4">
               {project.links?.map((link) => renderLink(link))}
             </div>
           </div>
         </div>
 
-        {/* Contenu du modal */}
-        <p className="text-left text-lg md:text-xl text-white font-bold mb-2 mt-4">
-          Pitch
-        </p>
-        <div
-          className="text-gray-300 mb-6 text-sm md:text-base"
-          dangerouslySetInnerHTML={{
-            __html: language === "fr" ? project.pitch_fr : project.pitch_en,
-          }}
-        ></div>
+        <div className="space-y-6">
+          <section>
+            <h3 className="text-lg md:text-xl font-bold mb-3 text-foreground">
+              Pitch
+            </h3>
+            <div
+              className="text-foreground/90 text-sm md:text-base prose prose-sm prose-headings:text-foreground prose-a:text-primary"
+              dangerouslySetInnerHTML={{
+                __html: language === "fr" ? project.pitch_fr : project.pitch_en,
+              }}
+            ></div>
+          </section>
 
-        {/* Affichage des images ou texte de non-disponibilité */}
-        <p className="text-left text-lg md:text-xl font-bold mb-2 mt-4 text-white">
-          Images
-        </p>
-        {project.image && project.image.length > 0 ? (
-          <div className="mb-6">
-            {project.image.map((image: string, index: number) => (
-              <img
-                key={index}
-                src={`https://i.imgur.com/${image}.png`}
-                alt={`${project.title} image ${index + 1}`}
-                className="rounded-lg w-full h-auto"
-              />
-            ))}
-          </div>
-        ) : (
-          <p className="text-gray-400 mb-6 text-sm md:text-base">
-            Pas disponible pour le moment
-          </p>
-        )}
+          <section>
+            <h3 className="text-lg md:text-xl font-bold mb-3 text-foreground">
+              Images
+            </h3>
+            {project.image && project.image.length > 0 ? (
+              <div className="space-y-4">
+                {project.image.map((image: string, index: number) => (
+                  <figure key={index} className="relative">
+                    <img
+                      src={`https://i.imgur.com/${image}.png`}
+                      alt={`${project.title} image ${index + 1}`}
+                      className="
+                        rounded-md w-full h-auto 
+                        border border-card-border
+                        shadow-sm
+                      "
+                      loading="lazy"
+                    />
+                    <figcaption className="text-muted text-xs text-center mt-1">
+                      {project.title} - Image {index + 1}
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            ) : (
+              <p className="text-muted text-sm md:text-base italic">
+                Pas d'images disponibles pour le moment
+              </p>
+            )}
+          </section>
+        </div>
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ const useLanguage = () => {
       const storedLanguage = localStorage.getItem(
         "language"
       ) as Language | null;
-      return storedLanguage === "en" ? "en" : "fr"; // Définit "fr" par défaut
+      return storedLanguage === "en" ? "en" : "fr";
     }
     return "fr";
   });

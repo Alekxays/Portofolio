@@ -9,7 +9,7 @@ const AboutMe = () => {
   return (
     <section
       id="about-me"
-      className="max-w-7xl mx-auto px-4 py-16 md:py-24 text-black dark:text-white"
+      className="container px-4 py-16 md:py-24 animate-slide-in"
       aria-labelledby="about-me-title"
     >
       <h2
@@ -18,18 +18,21 @@ const AboutMe = () => {
       >
         {content.aboutMeTitle}
       </h2>
+
       <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
-        {/* Texte */}
         <article className="flex-1 text-center md:text-left space-y-6 md:space-y-8">
           <p className="text-lg md:text-xl leading-relaxed">
             {content.aboutMeParagraph1}
           </p>
+
           <p className="text-lg md:text-xl leading-relaxed">
             {content.aboutMeParagraph2}
           </p>
+
           <p className="text-lg md:text-xl leading-relaxed">
             {content.aboutMeParagraph3}
           </p>
+
           <p className="text-lg md:text-xl font-bold leading-relaxed">
             {content.aboutMeConclusion}
           </p>

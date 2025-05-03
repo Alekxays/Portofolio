@@ -5,11 +5,11 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-import GithubIcon from "../../public/img/github.svg";
-import LinkedinIcon from "../../public/img/linkedin.svg";
-import CVIcon from "../../public/img/cv.svg";
-import MailIcon from "../../public/img/mail.svg";
-import ArrowIcon from "../../public/img/arrow.svg";
+import GithubIcon from "/public/img/github.svg";
+import LinkedinIcon from "/public/img/linkedin.svg";
+import CVIcon from "/public/img/cv.svg";
+import MailIcon from "/public/img/mail.svg";
+import ArrowIcon from "/public/img/arrow.svg";
 
 const ProjectsSection = dynamic(() => import("@/components/projectsSection"));
 const ContactForm = dynamic(() => import("@/components/contactForm"));
@@ -34,11 +34,7 @@ export default function Home() {
 
   return (
     <React.Fragment>
-      <main
-        className="min-h-screen bg-[#e9ecef] dark:bg-[#212529] text-black dark:text-white"
-        role="main"
-      >
-        {/* Hero Section */}
+      <main className="min-h-screen" role="main">
         <section
           id="home"
           className="max-w-7xl mx-auto px-4 py-32 md:py-48 flex flex-col md:flex-row items-center min-h-screen space-y-8 md:space-y-0"
@@ -97,20 +93,20 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Flèche de défilement vers le bas */}
         {!isScrolled && (
-          <div className="fixed bottom-6 transform -translate-x-1/2 text-center animate-bounce w-full">
-            <div className="flex flex-col items-center space-y-2 text-gray-700 dark:text-gray-300">
-              <span className="text-xs sm:text-sm md:text-lg">Scroll Down</span>
+          <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 text-center animate-bounce w-full">
+            <div className="flex flex-col items-center space-y-2">
+              <span className="text-xs sm:text-sm md:text-lg">
+                {language === "fr" ? "Défiler vers le bas" : "Scroll Down"}
+              </span>
               <ArrowIcon
-                className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-gray-700 dark:text-gray-300"
+                className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"
                 aria-label="Scroll to next section"
               />
             </div>
           </div>
         )}
 
-        {/* About Me Section */}
         <section
           id="about-me"
           className="max-w-7xl mx-auto px-4 py-32 md:py-48 min-h-screen"
@@ -119,7 +115,6 @@ export default function Home() {
           <AboutMe />
         </section>
 
-        {/* Projects Section */}
         <section
           id="projects"
           className="max-w-7xl mx-auto px-4 py-32 md:py-48 min-h-screen"
@@ -128,7 +123,6 @@ export default function Home() {
           <ProjectsSection />
         </section>
 
-        {/* Contact Section */}
         <section
           id="contact"
           className="max-w-7xl mx-auto px-4 py-32 md:py-48 min-h-screen"
@@ -140,7 +134,7 @@ export default function Home() {
           >
             {content.contactTitle}
           </h2>
-          <p className="text-black dark:text-white text-sm md:text-base mb-6 text-center">
+          <p className="text-sm md:text-base mb-6 text-center">
             {content.contactDescription}
           </p>
           <div className="flex flex-col md:flex-row items-center md:space-x-4 mb-4 md:mb-6 space-y-4 md:space-y-0 justify-center">

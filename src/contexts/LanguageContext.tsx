@@ -30,7 +30,6 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [content, setContent] = useState(fr);
 
   useEffect(() => {
-    // Charger la langue depuis le localStorage si elle existe
     const storedLanguage = localStorage.getItem("language") as Language | null;
     if (storedLanguage) {
       setLanguage(storedLanguage);
@@ -42,7 +41,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     const newLanguage = language === "fr" ? "en" : "fr";
     setLanguage(newLanguage);
     setContent(newLanguage === "fr" ? fr : en);
-    localStorage.setItem("language", newLanguage); // Enregistrer la langue sélectionnée dans le localStorage
+    localStorage.setItem("language", newLanguage);
   };
 
   return (
